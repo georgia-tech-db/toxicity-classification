@@ -181,6 +181,6 @@ tutorials/*.py
 # benchmark
 .benchmarks
 eva.txt
-eva-application
+eva-application-venv
 
 *.png

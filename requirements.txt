@@ -3,7 +3,7 @@
 evadb==0.1.3
 
 # NOTEBOOK
-nbformat
+detoxify
 nbconvert
 ipykernel
 ipywidgets
