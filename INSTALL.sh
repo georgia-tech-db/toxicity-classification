@@ -11,7 +11,7 @@
 
 # Setup virtual environment
 python3 -m venv eva-application-venv
-source eva-application/bin/activate-venv
+source eva-application-venv/bin/activate
 
 # Install EVA application dependencies
 pip install -r requirements.txt
