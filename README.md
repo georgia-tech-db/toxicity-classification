@@ -2,28 +2,32 @@
 
 <table align="left">
   <td>
-    <a target="_blank" href="https://colab.research.google.com/georgia-tech-db/eva-application-template/blob/main/car_plate_detection.ipynb"><img src="https://www.tensorflow.org/images/colab_logo_32px.png" /> Run on Google Colab</a>
+    <a target="_blank" href="https://colab.research.google.com/github/georgia-tech-db/toxicity-classification/blob/main/README.ipynb"><img src="https://www.tensorflow.org/images/colab_logo_32px.png" /> Run on Google Colab</a>
   </td>
   <td>
-    <a target="_blank" href="https://colab.research.google.com/georgia-tech-db/eva-application-template/blob/main/car_plate_detection.ipynb"><img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" /> View source on GitHub</a>
+    <a target="_blank" href="https://github.com/georgia-tech-db/toxicity-classification/blob/main/README.ipynb"><img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" /> View source on GitHub</a>
   </td>
   <td>
-    <a target="_blank" href="https://colab.research.google.com/georgia-tech-db/eva-application-template/blob/main/car_plate_detection.ipynb"><img src="https://www.tensorflow.org/images/download_logo_32px.png" /> Download notebook</a>
+    <a target="_blank" href="
+    https://raw.githubusercontent.com/georgia-tech-db/toxicity-classification/main/README.ipynb"><img src="https://www.tensorflow.org/images/download_logo_32px.png" /> Download notebook</a>
   </td>
 </table>
 <br>
 <br>
 
-
-
 ### Install Application Dependecies 
 
 
 ```python
-pip -q install -r requirements.txt
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/toxicity-classification/main/requirements.txt"
+!pip -q install -r requirements.txt
 ```
 
-    Note: you may need to restart the kernel to use updated packages.
+    File ‘requirements.txt’ already there; not retrieving.
+    
+    
+    [1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m A new release of pip available: [0m[31;49m22.2.2[0m[39;49m -> [0m[32;49m22.3.1[0m
+    [1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m To update, run: [0m[32;49mpip install --upgrade pip[0m
 
 
 ### Start EVA server
@@ -37,10 +41,21 @@ We are reusing the start server notebook for launching the EVA server.
 cursor = connect_to_server()
 ```
 
-    File ‘00-start-eva-server.ipynb’ already there; not retrieving.
+    --2023-01-07 00:10:04--  https://raw.githubusercontent.com/georgia-tech-db/eva/master/tutorials/00-start-eva-server.ipynb
+    Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.108.133, ...
+    Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+    HTTP request sent, awaiting response... 200 OK
+    Length: 3970 (3.9K) [text/plain]
+    Saving to: ‘00-start-eva-server.ipynb’
+    
+    00-start-eva-server 100%[===================>]   3.88K  --.-KB/s    in 0s      
+    
+    2023-01-07 00:10:04 (29.6 MB/s) - ‘00-start-eva-server.ipynb’ saved [3970/3970]
     
     nohup eva_server > eva.log 2>&1 &
     
+    [1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m A new release of pip available: [0m[31;49m22.2.2[0m[39;49m -> [0m[32;49m22.3.1[0m
+    [1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m To update, run: [0m[32;49mpython -m pip install --upgrade pip[0m
     Note: you may need to restart the kernel to use updated packages.
 
 
@@ -48,6 +63,8 @@ cursor = connect_to_server()
 
 
 ```python
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/toxicity-classification/main/meme1.jpg"
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/toxicity-classification/main/meme2.jpg"
 cursor.execute('DROP TABLE IF EXISTS MemeImages;')
 response = cursor.fetch_all()
 print(response)
@@ -59,27 +76,33 @@ response = cursor.fetch_all()
 print(response)
 ```
 
+    File ‘meme1.jpg’ already there; not retrieving.
+    
+    File ‘meme2.jpg’ already there; not retrieving.
+    
     @status: ResponseStatus.SUCCESS
     @batch: 
-                                             0
-    0  Table Successfully dropped: MemeImages
-    @query_time: 0.030441742157563567
+     Empty DataFrame
+    Columns: []
+    Index: []
+    @query_time: 0.013611344853416085
     @status: ResponseStatus.SUCCESS
     @batch: 
                                 0
     0  Number of loaded IMAGE: 1
-    @query_time: 0.055090541020035744
+    @query_time: 0.05462886509485543
     @status: ResponseStatus.SUCCESS
     @batch: 
                                 0
     0  Number of loaded IMAGE: 1
-    @query_time: 0.01767381909303367
+    @query_time: 0.016247023129835725
 
 
 ### Create OCR Extractor UDF
 
 
 ```python
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/toxicity-classification/main/ocr_extractor.py"
 cursor.execute("DROP UDF OCRExtractor;")
 response = cursor.fetch_all()
 print(response)
@@ -94,22 +117,25 @@ response = cursor.fetch_all()
 print(response)
 ```
 
+    File ‘ocr_extractor.py’ already there; not retrieving.
+    
     @status: ResponseStatus.SUCCESS
     @batch: 
                                             0
     0  UDF OCRExtractor successfully dropped
-    @query_time: 0.01484653796069324
+    @query_time: 0.017284406116232276
     @status: ResponseStatus.SUCCESS
     @batch: 
                                                            0
     0  UDF OCRExtractor successfully added to the database.
-    @query_time: 2.548301833216101
+    @query_time: 6.037804058985785
 
 
 ### Create Custom UDF for Toxicity Classification
 
 
 ```python
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/toxicity-classification/main/toxicity_classifier.py"
 cursor.execute("DROP UDF IF EXISTS ToxicityClassifier;")
 response = cursor.fetch_all()
 print(response)
@@ -123,16 +149,19 @@ response = cursor.fetch_all()
 print(response)
 ```
 
+    File ‘toxicity_classifier.py’ already there; not retrieving.
+    
     @status: ResponseStatus.SUCCESS
     @batch: 
-                                                  0
-    0  UDF ToxicityClassifier successfully dropped
-    @query_time: 0.011066884966567159
+     Empty DataFrame
+    Columns: []
+    Index: []
+    @query_time: 0.013038322096690536
     @status: ResponseStatus.SUCCESS
     @batch: 
                                                                  0
     0  UDF ToxicityClassifier successfully added to the database.
-    @query_time: 1.4505423428490758
+    @query_time: 1.6026825660374016
 
 
 ### Run Toxicity Classifier on OCR Extracted from Images
@@ -151,7 +180,7 @@ print(response)
                                   ocrextractor.labels toxicityclassifier.labels
     0                  [CANT FuCK WITh, MEIN SWAG E]                     toxic
     1  [YOU CANT SPELL, CLINTON WITHOUT CNN, igfip:]                 not toxic
-    @query_time: 6.558598998002708
+    @query_time: 11.830992880044505
 
 
 ### Visualize Model Output on Images
