@@ -75,17 +75,17 @@ print(response)
     @batch: 
                                              0
     0  Table Successfully dropped: MemeImages
-    @query_time: 0.033056735061109066
+    @query_time: 0.03890102496370673
     @status: ResponseStatus.SUCCESS
     @batch: 
                                 0
     0  Number of loaded IMAGE: 1
-    @query_time: 0.046481800032779574
+    @query_time: 0.050992883974686265
     @status: ResponseStatus.SUCCESS
     @batch: 
                                 0
     0  Number of loaded IMAGE: 1
-    @query_time: 0.013659940101206303
+    @query_time: 0.016112261917442083
 
 
 ### Create OCR Extractor UDF
@@ -113,12 +113,12 @@ print(response)
     @batch: 
                                             0
     0  UDF OCRExtractor successfully dropped
-    @query_time: 0.01634213514626026
+    @query_time: 0.01684344606474042
     @status: ResponseStatus.SUCCESS
     @batch: 
                                                            0
     0  UDF OCRExtractor successfully added to the database.
-    @query_time: 6.0242739440873265
+    @query_time: 6.026845669141039
 
 
 ### Create Custom UDF for Toxicity Classification
@@ -145,12 +145,12 @@ print(response)
     @batch: 
                                                   0
     0  UDF ToxicityClassifier successfully dropped
-    @query_time: 0.018184638116508722
+    @query_time: 0.01804027589969337
     @status: ResponseStatus.SUCCESS
     @batch: 
                                                                  0
     0  UDF ToxicityClassifier successfully added to the database.
-    @query_time: 1.5802938418928534
+    @query_time: 1.5074586649425328
 
 
 ### Run Toxicity Classifier on OCR Extracted from Images
@@ -169,7 +169,7 @@ print(response)
                                   ocrextractor.labels toxicityclassifier.labels
     0                  [CANT FuCK WITh, MEIN SWAG E]                     toxic
     1  [YOU CANT SPELL, CLINTON WITHOUT CNN, igfip:]                 not toxic
-    @query_time: 11.765741667943075
+    @query_time: 11.451739435084164
 
 
 ### Visualize Model Output on Images
