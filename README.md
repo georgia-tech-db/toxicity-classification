@@ -20,14 +20,14 @@
 
 ```python
 !wget -nc "https://raw.githubusercontent.com/georgia-tech-db/toxicity-classification/main/requirements.txt"
-!pip -q install -r requirements.txt
+!pip -q --no-color install -r requirements.txt
 ```
 
     File ‘requirements.txt’ already there; not retrieving.
     
     
-    [1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m A new release of pip available: [0m[31;49m22.2.2[0m[39;49m -> [0m[32;49m22.3.1[0m
-    [1m[[0m[34;49mnotice[0m[1;39;49m][0m[39;49m To update, run: [0m[32;49mpip install --upgrade pip[0m
+    [1m[[0mnotice[1m][0m A new release of pip available: 22.2.2 -> 22.3.1
+    [1m[[0mnotice[1m][0m To update, run: pip install --upgrade pip
 
 
 ### Start EVA server
@@ -41,16 +41,7 @@ We are reusing the start server notebook for launching the EVA server.
 cursor = connect_to_server()
 ```
 
-    --2023-01-07 00:10:04--  https://raw.githubusercontent.com/georgia-tech-db/eva/master/tutorials/00-start-eva-server.ipynb
-    Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.108.133, ...
-    Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 3970 (3.9K) [text/plain]
-    Saving to: ‘00-start-eva-server.ipynb’
-    
-    00-start-eva-server 100%[===================>]   3.88K  --.-KB/s    in 0s      
-    
-    2023-01-07 00:10:04 (29.6 MB/s) - ‘00-start-eva-server.ipynb’ saved [3970/3970]
+    File ‘00-start-eva-server.ipynb’ already there; not retrieving.
     
     nohup eva_server > eva.log 2>&1 &
     
@@ -82,20 +73,19 @@ print(response)
     
     @status: ResponseStatus.SUCCESS
     @batch: 
-     Empty DataFrame
-    Columns: []
-    Index: []
-    @query_time: 0.013611344853416085
+                                             0
+    0  Table Successfully dropped: MemeImages
+    @query_time: 0.033056735061109066
     @status: ResponseStatus.SUCCESS
     @batch: 
                                 0
     0  Number of loaded IMAGE: 1
-    @query_time: 0.05462886509485543
+    @query_time: 0.046481800032779574
     @status: ResponseStatus.SUCCESS
     @batch: 
                                 0
     0  Number of loaded IMAGE: 1
-    @query_time: 0.016247023129835725
+    @query_time: 0.013659940101206303
 
 
 ### Create OCR Extractor UDF
@@ -123,12 +113,12 @@ print(response)
     @batch: 
                                             0
     0  UDF OCRExtractor successfully dropped
-    @query_time: 0.017284406116232276
+    @query_time: 0.01634213514626026
     @status: ResponseStatus.SUCCESS
     @batch: 
                                                            0
     0  UDF OCRExtractor successfully added to the database.
-    @query_time: 6.037804058985785
+    @query_time: 6.0242739440873265
 
 
 ### Create Custom UDF for Toxicity Classification
@@ -153,15 +143,14 @@ print(response)
     
     @status: ResponseStatus.SUCCESS
     @batch: 
-     Empty DataFrame
-    Columns: []
-    Index: []
-    @query_time: 0.013038322096690536
+                                                  0
+    0  UDF ToxicityClassifier successfully dropped
+    @query_time: 0.018184638116508722
     @status: ResponseStatus.SUCCESS
     @batch: 
                                                                  0
     0  UDF ToxicityClassifier successfully added to the database.
-    @query_time: 1.6026825660374016
+    @query_time: 1.5802938418928534
 
 
 ### Run Toxicity Classifier on OCR Extracted from Images
@@ -180,7 +169,7 @@ print(response)
                                   ocrextractor.labels toxicityclassifier.labels
     0                  [CANT FuCK WITh, MEIN SWAG E]                     toxic
     1  [YOU CANT SPELL, CLINTON WITHOUT CNN, igfip:]                 not toxic
-    @query_time: 11.830992880044505
+    @query_time: 11.765741667943075
 
 
 ### Visualize Model Output on Images
